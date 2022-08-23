@@ -1,0 +1,29 @@
+version: 0.0
+os: linux
+files:
+ - source: /
+   destination: /home/ec2-user/flask-CD
+permissions:
+  - object: /home/ec2-user/flask-CD/app.py
+    owner: ec2-user
+    mode: 644
+    type:
+      - file
+  - object: /home/ec2-user/flask-CD/requirements.txt
+    owner: ec2-user
+    mode: 644
+    type:
+      - file
+hooks:
+  AfterInstall:
+   - location: scripts/install
+     timeout: 300
+     runas: root
+  ApplicationStart:
+   - location: scripts/run
+     timeout: 300
+     runas: root
+  ApplicationStop:
+   - location: scripts/stop
+     timeout: 300
+     runas: root

@@ -1,0 +1,5 @@
+#!/bin/env bash
+export PORT=80 
+cd /home/ec2-user/flask-CD
+source venv/bin/activate
+gunicorn --workers=1 app:app
